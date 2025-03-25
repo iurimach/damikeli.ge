@@ -2,7 +2,7 @@
 //იდ ით ფილტრის DETAIL.JS აკეტებს, რომელსაც მთლიანი მონცმები მოაქ აიტმის შესახებ
 // JSON მონაცემების დატვირთვა
 async function loadItems() {
-    const response = await fetch('../json-data/reklama.json');
+    const response = await fetch('json-data/reklama.json');
     const items = await response.json();
     return items;
 }
