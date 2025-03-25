@@ -31,7 +31,7 @@ function displenonestyle(){
   // ფუნქცია, რომელიც აჩვენებს ფილტრირებულ მონაცემებს
  // JSON მონაცემების ფაილიდან წამოღება
  async function fetchData() {
-    const response = await fetch('../json-data/alldata.json'); // მოცემული JSON ფაილი
+    const response = await fetch('json-data/alldata.json'); // მოცემული JSON ფაილი
     const data = await response.json();
     console.log(data," ალლ_data")
     return data;
