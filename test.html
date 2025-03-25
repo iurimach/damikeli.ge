@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩატ ბოტი</title>
+    <style>
+        /* ჩატ ბოტის ღილაკი */
+        #chatButton {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* ჩატ ბოტის კონტეინერი */
+        #chatContainer {
+            display: none; /* პირველადი დასალაგებელი მდგომარეობა */
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 10px;
+            overflow-y: auto;
+            z-index: 9999;
+        }
+
+        /* ჩატ ბოტის სივრცე */
+        #chatContent {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* თითოეული კითხვა */
+        .question {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* თითოეული პასუხი */
+        .answer {
+            padding: 10px;
+            background-color: #e9ecef;
+            margin-bottom: 5px;
+            display: none; /* პირველად დაფარული */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ჩატ ბოტის ღილაკი -->
+<button id="chatButton">💬</button>
+
+<!-- ჩატ ბოტის კონტეინერი -->
+<div id="chatContainer">
+    <div id="chatContent">
+        <!-- წინასწარ განსაზღვრული კითხვები და პასუხები -->
+        <div class="question" data-id="1">რა დროა?</div>
+        <div class="answer" id="answer1">მაშინ, როდესაც წაიკითხავ, დროის და რელატიურობის მზე განადგურდება!</div>
+
+        <div class="question" data-id="2">როგორ ხარ?</div>
+        <div class="answer" id="answer2">კარგად ვარ, მადლობა! როგორ ხარ შენ?</div>
+
+        <div class="question" data-id="3">რას აკეთებ?</div>
+        <div class="answer" id="answer3">წერას ვამთავრებ, შემიძლია დახმარება გაგიწიო?</div>
+    </div>
+</div>
+
+<script>
+    // ღილაკის დაჭერისას ჩატ ბოტის ღიობის მართვა
+    const chatButton = document.getElementById('chatButton');
+    const chatContainer = document.getElementById('chatContainer');
+
+    chatButton.addEventListener('click', () => {
+        if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+            chatContainer.style.display = 'block'; // ჩატ ბოტის გახსნა
+        } else {
+            chatContainer.style.display = 'none'; // ჩატ ბოტის დახურვა
+        }
+    });
+
+    // ყველა კითხვაზე დაჭერის შემთხვევაში პასუხის გამოჩენა/დაკეცვა
+    const questions = document.querySelectorAll('.question');
+
+    questions.forEach(question => {
+        question.addEventListener('click', function() {
+            const questionId = question.getAttribute('data-id');
+            const answer = document.getElementById(`answer${questionId}`);
+
+            // პასუხის_toggle გაკეთება
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block'; // პასუხის გახსნა
+            } else {
+                answer.style.display = 'none'; // პასუხის დახურვა
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
